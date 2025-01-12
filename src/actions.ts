@@ -1,4 +1,5 @@
 import type { ModuleInstance } from './main.js'
+import { Group } from './types.js'
 
 export function UpdateActions(self: ModuleInstance): void {
 	self.setActionDefinitions({
@@ -53,7 +54,7 @@ export function UpdateActions(self: ModuleInstance): void {
 				self.log('debug', 'presentation active')
 				self.log('debug', `${JSON.stringify(presentation)}`)
 
-				const selected_group = presentation.data.presentation.groups.find((grp) => grp.name === group)
+				const selected_group = presentation.data.presentation.groups.find((grp: Group) => grp.name === group)
 				if (selected_group === undefined) {
 					self.log('error', 'group not found')
 					return
