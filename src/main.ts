@@ -21,9 +21,11 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 		const status = await this.ProPresenter.version()
 		if (!status.ok) {
 			this.updateStatus(InstanceStatus.UnknownError)
-			this.log('error', status.data)
+			this.log('error', JSON.stringify(status))
 			return
 		}
+		this.log('info', 'ProPresenter Slide Grabber module initialized')
+		this.log('debug', JSON.stringify(status))
 
 		this.updateStatus(InstanceStatus.Ok)
 
@@ -38,6 +40,17 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 
 	async configUpdated(config: ModuleConfig): Promise<void> {
 		this.config = config
+		this.ProPresenter = new ProPresenter(this.config.host, this.config.port, 1000)
+		const status = await this.ProPresenter.version()
+		if (!status.ok) {
+			this.updateStatus(InstanceStatus.UnknownError)
+			this.log('error', JSON.stringify(status))
+			return
+		}
+		this.log('info', 'ProPresenter Slide Grabber module initialized')
+		this.log('debug', JSON.stringify(status))
+
+		this.updateStatus(InstanceStatus.Ok)
 	}
 
 	// Return config fields for web config
