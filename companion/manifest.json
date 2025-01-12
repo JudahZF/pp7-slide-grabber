@@ -5,12 +5,12 @@
 	"description": "Converts ProPresenter Slides to variables",
 	"version": "0.0.0",
 	"license": "MIT",
-	"repository": "git+https://github.com/bitfocus/companion-module-your-module-name.git",
-	"bugs": "https://github.com/bitfocus/companion-module-your-module-name/issues",
+	"repository": "git+https://github.com/JudahZF/pp7-slide-grabber.git",
+	"bugs": "https://github.com/JudahZF/pp7-slide-grabber/issues",
 	"maintainers": [
 		{
-			"name": "Your name",
-			"email": "Your email"
+			"name": "Judah Fuller",
+			"email": "judah@judahfuller.com"
 		}
 	],
 	"runtime": {
@@ -20,7 +20,7 @@
 		"entrypoint": "../dist/main.js"
 	},
 	"legacyIds": [],
-	"manufacturer": "Your company",
-	"products": ["Your product"],
+	"manufacturer": "Renewed Vision",
+	"products": ["ProPresenter"],
 	"keywords": []
 }
