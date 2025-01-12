@@ -19,7 +19,8 @@
 		"url": "git+https://github.com/bitfocus/companion-module-your-module-name.git"
 	},
 	"dependencies": {
-		"@companion-module/base": "~1.11.2"
+		"@companion-module/base": "~1.11.2",
+		"renewedvision-propresenter": "^7.7.2"
 	},
 	"devDependencies": {
 		"@companion-module/tools": "^2.1.1",

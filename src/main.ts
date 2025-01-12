@@ -1,5 +1,6 @@
 import { InstanceBase, runEntrypoint, InstanceStatus, SomeCompanionConfigField } from '@companion-module/base'
 import { GetConfigFields, type ModuleConfig } from './config.js'
+import { ProPresenter } from 'renewedvision-propresenter'
 import { UpdateVariableDefinitions } from './variables.js'
 import { UpgradeScripts } from './upgrades.js'
 import { UpdateActions } from './actions.js'
@@ -7,6 +8,7 @@ import { UpdateFeedbacks } from './feedbacks.js'
 
 export class ModuleInstance extends InstanceBase<ModuleConfig> {
 	config!: ModuleConfig // Setup in init()
+	ProPresenter!: ProPresenter
 
 	constructor(internal: unknown) {
 		super(internal)
@@ -14,6 +16,14 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 
 	async init(config: ModuleConfig): Promise<void> {
 		this.config = config
+
+		this.ProPresenter = new ProPresenter(this.config.host, this.config.port, 1000)
+		const status = await this.ProPresenter.version()
+		if (!status.ok) {
+			this.updateStatus(InstanceStatus.UnknownError)
+			this.log('error', status.data)
+			return
+		}
 
 		this.updateStatus(InstanceStatus.Ok)
 

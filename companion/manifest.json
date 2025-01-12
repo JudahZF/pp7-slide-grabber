@@ -1,8 +1,8 @@
 {
-	"id": "your-module-name",
-	"name": "your-module-name",
-	"shortname": "module-shortname",
-	"description": "A short one line description of your module",
+	"id": "ProPresenter-Slide-Grabber",
+	"name": "ProPresenter Slide Grabber",
+	"shortname": "PP7-Slide-Grabber",
+	"description": "Converts ProPresenter Slides to variables",
 	"version": "0.0.0",
 	"license": "MIT",
 	"repository": "git+https://github.com/bitfocus/companion-module-your-module-name.git",
