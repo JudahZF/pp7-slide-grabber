@@ -29,20 +29,20 @@ export function GetConfigFields(): SomeCompanionConfigField[] {
 		{
 			type: 'number',
 			id: 'num_slides',
-			label: 'Number of Slide Vairables',
+			label: 'Number of Slide Variables',
 			width: 4,
 			min: 1,
-			max: 64,
+			max: 256,
 			default: 16,
 		},
 		{
 			type: 'number',
 			id: 'num_words',
-			label: 'Number of Word Vairables',
+			label: 'Number of Word Variables',
 			width: 4,
 			min: 1,
-			max: 256,
-			default: 64,
+			max: 1024,
+			default: 128,
 		},
 	]
 }
