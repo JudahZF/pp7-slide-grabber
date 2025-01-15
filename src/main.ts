@@ -51,6 +51,8 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 		this.log('debug', JSON.stringify(status))
 
 		this.updateStatus(InstanceStatus.Ok)
+		this.updateActions() // export actions
+		this.updateVariableDefinitions() // export variable definitions
 	}
 
 	// Return config fields for web config
