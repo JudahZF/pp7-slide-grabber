@@ -4,7 +4,7 @@ import { Group } from './types.js'
 export function UpdateActions(self: ModuleInstance): void {
 	self.setActionDefinitions({
 		grab_slide_action: {
-			name: 'Grab Slide Text',
+			name: 'Grab Group Slides',
 			options: [
 				{
 					id: 'group',
@@ -85,7 +85,7 @@ export function UpdateActions(self: ModuleInstance): void {
 			},
 		},
 		grab_word_action: {
-			name: 'Grab Slide Words',
+			name: 'Grab Group Words',
 			options: [
 				{
 					id: 'group',
@@ -193,7 +193,7 @@ export function UpdateActions(self: ModuleInstance): void {
 				{
 					id: 'text_id',
 					type: 'number',
-					label: 'Index to store word variable in',
+					label: 'Slide variable number',
 					default: 1,
 					min: 1,
 					max: self.config.num_slides,
@@ -201,8 +201,8 @@ export function UpdateActions(self: ModuleInstance): void {
 			],
 			callback: async (event) => {
 				const slide = await self.ProPresenter.statusSlide()
-				const num_words = event.options.num_words
-				const start = event.options.start_words
+				const num_words: number = event.options.num_words! as number
+				const start: number = event.options.start_words! as number
 				const text_id = event.options.text_id
 				if (slide === null) {
 					self.log('error', 'no presentation active')
@@ -237,7 +237,7 @@ export function UpdateActions(self: ModuleInstance): void {
 				}
 
 				if (words.length === 0) {
-					self.log('error', 'no words found')
+					return
 				}
 
 				if (typeof num_words !== typeof 0) {
@@ -289,8 +289,8 @@ export function UpdateActions(self: ModuleInstance): void {
 			],
 			callback: async (event) => {
 				const slide = await self.ProPresenter.statusSlide()
-				const num_words = event.options.num_words
-				const start = event.options.start_words
+				const num_words: number = event.options.num_words! as number
+				const start: number = event.options.start_words! as number
 				const text_id = event.options.text_id
 				self.setVariableValues({
 					[`slide_${text_id}`]: '',
