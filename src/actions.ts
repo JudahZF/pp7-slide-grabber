@@ -238,6 +238,80 @@ export function UpdateActions(self: ModuleInstance): void {
 
 				if (words.length === 0) {
 					self.log('error', 'no words found')
+				}
+
+				if (typeof num_words !== typeof 0) {
+					self.log('error', 'Num ')
+					return
+				}
+
+				for (let i = 0; i < num_words; i++) {
+					self.setVariableValues({
+						[`word_${start + i}`]: '',
+					})
+				}
+
+				for (let i = 0; i < num_words; i++) {
+					const word = words[i]
+					self.setVariableValues({
+						[`word_${start + i}`]: word,
+					})
+				}
+			},
+		},
+		grab_next_slide_action: {
+			name: 'Grab Next Slide',
+			options: [
+				{
+					id: 'num_words',
+					type: 'number',
+					label: 'Maxium number of words',
+					default: 32,
+					min: 1,
+					max: self.config.num_words,
+				},
+				{
+					id: 'start_words',
+					type: 'number',
+					label: 'Words variable start',
+					default: 1,
+					min: 1,
+					max: self.config.num_words,
+				},
+				{
+					id: 'text_id',
+					type: 'number',
+					label: 'Slide variable number',
+					default: 1,
+					min: 1,
+					max: self.config.num_slides,
+				},
+			],
+			callback: async (event) => {
+				const slide = await self.ProPresenter.statusSlide()
+				const num_words = event.options.num_words
+				const start = event.options.start_words
+				const text_id = event.options.text_id
+				self.setVariableValues({
+					[`slide_${text_id}`]: '',
+				})
+
+				self.setVariableValues({
+					[`slide_${text_id}`]: slide.data.next.text,
+				})
+
+				const words: string[] = []
+				const text = slide.data.current.text.replaceAll('\n', ' ').split(' ')
+				for (let j = 0; j < text.length; j++) {
+					words.push(text[j])
+				}
+
+				if (words.length === 0) {
+					return
+				}
+
+				if (typeof num_words !== typeof 0) {
+					self.log('error', 'Num ')
 					return
 				}
 				self.log('debug', 'words found')
